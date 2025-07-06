@@ -1,5 +1,7 @@
 package com.springleaf.mybatis.binding;
 
+import com.springleaf.mybatis.session.SqlSession;
+
 import java.io.Serializable;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
@@ -12,19 +14,15 @@ public class MapperProxy<T> implements InvocationHandler, Serializable {
 
     private static final long serialVersionUID = -6424540398559729838L;
 
-    /**
-     * 存储mapper的方法名和sql语句
-     * key: com.xxx.xxxMapper.xxx
-     * value: sql语句
-     */
-    private final Map<String, String> sqlSession;
+
+    private final SqlSession sqlSession;
 
     /**
      * mapper接口，比如UserMapper
      */
     private final Class<T> mapperInterface;
 
-    public MapperProxy(Map<String, String> sqlSession, Class<T> mapperInterface) {
+    public MapperProxy(SqlSession sqlSession, Class<T> mapperInterface) {
         this.sqlSession = sqlSession;
         this.mapperInterface = mapperInterface;
     }
@@ -35,7 +33,7 @@ public class MapperProxy<T> implements InvocationHandler, Serializable {
         if (Object.class.equals(method.getDeclaringClass())) {
             return method.invoke(this, args);
         } else {
-            return "你被代理了！" + sqlSession.get(mapperInterface.getName() + "." + method.getName());
+            return "你被代理了！" + sqlSession.selectOne(method.getName(), args);
         }
     }
 }

@@ -24,7 +24,7 @@ public class ApiTest {
 
         Map<String, String> sqlSession = new HashMap<>();
         sqlSession.put("com.springleaf.mybatis.test.mapper.UserMapper.queryUserName", "模拟执行 Mapper.xml 中 SQL 语句的操作：查询用户姓名");
-        UserMapper userMapper = factory.newInterface(sqlSession);
+        UserMapper userMapper = factory.newInstance(sqlSession);
 
         String res = userMapper.queryUserName("101");
         logger.info("测试结果：{}", res);

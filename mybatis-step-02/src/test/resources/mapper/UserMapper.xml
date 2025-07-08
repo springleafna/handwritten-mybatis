@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.springleaf.mybatis.test.mapper.UserMapper">
+<mapper namespace="com.springleaf.mybatis.mapper.com.springleaf.mybatis.test.UserMapper">
 
-    <select id="queryUserInfoById" parameterType="java.lang.Long" resultType="com.springleaf.mybatis.test.po.User">
+    <select id="queryUserInfoById" parameterType="java.lang.Long" resultType="com.springleaf.mybatis.po.com.springleaf.mybatis.test.User">
         SELECT id, userId, userHead, createTime
         FROM user
         where id = #{id}

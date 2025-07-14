@@ -30,7 +30,7 @@ public class ApiTest {
     }
 
     @Test
-    public void test_insertUserInfo() {
+    public void test_queryActivity() {
         // 1. 获取映射器对象
         ActivityMapper activityMapper = sqlSession.getMapper(ActivityMapper.class);
         // 2. 测试验证

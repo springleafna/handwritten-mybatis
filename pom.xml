@@ -23,6 +23,7 @@
         <module>mybatis-step-11</module>
         <module>mybatis-step-12</module>
         <module>mybatis-step-13</module>
+        <module>mybatis-step-14</module>
     </modules>
 
     <properties>
@@ -66,7 +67,9 @@
         <dependency>
             <groupId>ognl</groupId>
             <artifactId>ognl</artifactId>
-            <version>3.3.2</version>
+            <version>3.0.8</version>
+            <scope>provided</scope>
+            <optional>true</optional>
         </dependency>
 
         <dependency>

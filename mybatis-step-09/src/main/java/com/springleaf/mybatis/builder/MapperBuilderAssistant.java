@@ -73,7 +73,7 @@ public class MapperBuilderAssistant extends BaseBuilder {
         }
         /*
          * 通常使用 resultType 即可满足大部分场景
-         * <select id="queryUserInfoById" resultType="cn.bugstack.mybatis.test.po.User">
+         * <select id="queryUserInfoById" resultType="com.springleaf.mybatis.test.po.User">
          * 使用 resultType 的情况下，Mybatis 会自动创建一个 ResultMap，基于属性名称映射列到 JavaBean 的属性上。
          */
         else if (resultType != null) {

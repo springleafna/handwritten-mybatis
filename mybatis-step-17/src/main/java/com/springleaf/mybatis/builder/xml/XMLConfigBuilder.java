@@ -7,6 +7,7 @@ import com.springleaf.mybatis.io.Resources;
 import com.springleaf.mybatis.mapping.Environment;
 import com.springleaf.mybatis.plugin.Interceptor;
 import com.springleaf.mybatis.session.Configuration;
+import com.springleaf.mybatis.session.LocalCacheScope;
 import com.springleaf.mybatis.transaction.TransactionFactory;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
@@ -60,6 +61,8 @@ public class XMLConfigBuilder extends BaseBuilder {
         try {
             // 插件
             pluginElement(root.element("plugins"));
+            // 设置
+            settingsElement(root.element("settings"));
             // 环境
             environmentsElement(root.element("environments"));
             // 解析映射器
@@ -142,6 +145,22 @@ public class XMLConfigBuilder extends BaseBuilder {
             }
         }
     }
+
+    /**
+     * <settings>
+     *     <!--缓存级别：SESSION/STATEMENT-->
+     *     <setting name="localCacheScope" value="SESSION"/>
+     * </settings>
+     */
+    private void settingsElement(Element context) {
+        if (context == null) return;
+        List<Element> elements = context.elements();
+        Properties props = new Properties();
+        for (Element element : elements) {
+            props.setProperty(element.attributeValue("name"), element.attributeValue("value"));
+        }
+        configuration.setCacheEnabled(booleanValueOf(props.getProperty("cacheEnabled"), true));
+        configuration.setLocalCacheScope(LocalCacheScope.valueOf(props.getProperty("localCacheScope")));    }
 
     /*
      * <mappers>

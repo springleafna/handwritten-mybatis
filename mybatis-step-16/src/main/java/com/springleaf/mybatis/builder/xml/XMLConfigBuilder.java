@@ -76,7 +76,7 @@ public class XMLConfigBuilder extends BaseBuilder {
     /**
      * Mybatis 允许你在某一点切入映射语句执行的调度
      * <plugins>
-     *     <plugin interceptor="cn.bugstack.mybatis.test.plugin.TestPlugin">
+     *     <plugin interceptor="com.springleaf.mybatis.test.plugin.TestPlugin">
      *         <property name="test00" value="100"/>
      *         <property name="test01" value="100"/>
      *     </plugin>

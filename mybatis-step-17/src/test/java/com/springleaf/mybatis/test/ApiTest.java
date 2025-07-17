@@ -44,4 +44,19 @@ public class ApiTest {
         logger.info("测试结果02：{}", JSONUtil.toJsonStr(activityMapper2.queryActivityById(req)));
         sqlSession02.close();
     }
+
+    @Test
+    public void test_query() throws IOException {
+        // 1. 从SqlSessionFactory中获取SqlSession
+        Reader reader = Resources.getResourceAsReader("mybatis-config.xml");
+        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
+        // 2. 请求对象
+        Activity req = new Activity();
+        req.setActivityId(100001L);
+        // 3. 开启 Session
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        ActivityMapper activityMapper = sqlSession.getMapper(ActivityMapper.class);
+        logger.info("测试结果：{}", JSONUtil.toJsonStr(activityMapper.queryActivityById(req)));
+        sqlSession.close();
+    }
 }

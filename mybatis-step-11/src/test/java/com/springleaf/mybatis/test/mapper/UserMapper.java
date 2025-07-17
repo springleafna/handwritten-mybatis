@@ -1,8 +1,6 @@
 package com.springleaf.mybatis.test.mapper;
 
-import com.springleaf.mybatis.annotations.Insert;
-import com.springleaf.mybatis.annotations.Select;
-import com.springleaf.mybatis.annotations.Update;
+import com.springleaf.mybatis.annotations.*;
 import com.springleaf.mybatis.test.po.User;
 
 import java.util.List;
@@ -33,6 +31,6 @@ public interface UserMapper {
             "VALUES (#{userId}, #{userName}, #{userHead}, now(), now())")
     void insertUserInfo(User req);
 
-    @Insert("DELETE FROM user WHERE userId = #{userId}")
+    @Delete("DELETE FROM user WHERE userId = #{userId}")
     int deleteUserInfoByUserId(String userId);
 }

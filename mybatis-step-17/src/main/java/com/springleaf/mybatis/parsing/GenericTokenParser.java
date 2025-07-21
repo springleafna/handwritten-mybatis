@@ -1,7 +1,5 @@
 package com.springleaf.mybatis.parsing;
 
-import com.springleaf.mybatis.parsing.TokenHandler;
-
 /**
  * 普通记号解析器，处理#{}和${}参数
  */

@@ -1,7 +1,6 @@
 package com.springleaf.mybatis.binding;
 
 import cn.hutool.core.lang.ClassScanner;
-import com.springleaf.mybatis.binding.MapperProxyFactory;
 import com.springleaf.mybatis.builder.annotation.MapperAnnotationBuilder;
 import com.springleaf.mybatis.session.Configuration;
 import com.springleaf.mybatis.session.SqlSession;

@@ -1,7 +1,6 @@
 package com.springleaf.mybatis.transaction;
 
 import com.springleaf.mybatis.session.TransactionIsolationLevel;
-import com.springleaf.mybatis.transaction.Transaction;
 
 import javax.sql.DataSource;
 import java.sql.Connection;

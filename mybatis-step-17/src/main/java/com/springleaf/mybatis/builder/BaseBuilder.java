@@ -47,6 +47,9 @@ public abstract class BaseBuilder {
         return typeHandlerRegistry.getMappingTypeHandler(typeHandlerType);
     }
 
+    /**
+     * 安全地将字符串（"ture"、"false"）转换为Boolean对象。当输入字符串为null时返回默认值，否则调用Boolean.valueOf()进行转换。
+     */
     protected Boolean booleanValueOf(String value, Boolean defaultValue) {
         return value == null ? defaultValue : Boolean.valueOf(value);
     }

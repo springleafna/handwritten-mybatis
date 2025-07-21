@@ -1,7 +1,5 @@
 package com.springleaf.mybatis.reflection.invoker;
 
-import com.springleaf.mybatis.reflection.invoker.Invoker;
-
 import java.lang.reflect.Method;
 
 /**

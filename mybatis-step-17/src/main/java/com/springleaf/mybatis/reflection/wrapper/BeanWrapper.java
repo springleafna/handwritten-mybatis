@@ -6,7 +6,6 @@ import com.springleaf.mybatis.reflection.SystemMetaObject;
 import com.springleaf.mybatis.reflection.factory.ObjectFactory;
 import com.springleaf.mybatis.reflection.invoker.Invoker;
 import com.springleaf.mybatis.reflection.property.PropertyTokenizer;
-import com.springleaf.mybatis.reflection.wrapper.BaseWrapper;
 
 import java.util.List;
 

@@ -1,7 +1,5 @@
 package com.springleaf.mybatis.cache;
 
-import com.springleaf.mybatis.cache.CacheKey;
-
 /**
  * NULL值缓存Key
  */

@@ -38,11 +38,14 @@ public class TypeAliasRegistry {
             if (string == null) {
                 return null;
             }
+            // 全部改为小写
             String key = string.toLowerCase(Locale.ENGLISH);
             Class<T> value;
             if (TYPE_ALIASES.containsKey(key)) {
+                // 如果是已注册的别名，直接返回
                 value = (Class<T>) TYPE_ALIASES.get(key);
             } else {
+                // 是未注册过的别名，则反射生成对应的 Class 对象
                 value = (Class<T>) Resources.classForName(string);
             }
             return value;

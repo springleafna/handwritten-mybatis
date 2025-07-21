@@ -1,8 +1,5 @@
 package com.springleaf.mybatis.datasource.pooled;
 
-import com.springleaf.mybatis.datasource.pooled.PooledConnection;
-import com.springleaf.mybatis.datasource.pooled.PooledDataSource;
-
 import java.util.ArrayList;
 import java.util.List;
 

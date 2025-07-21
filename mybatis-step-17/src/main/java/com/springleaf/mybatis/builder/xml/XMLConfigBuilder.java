@@ -1,7 +1,6 @@
 package com.springleaf.mybatis.builder.xml;
 
 import com.springleaf.mybatis.builder.BaseBuilder;
-import com.springleaf.mybatis.builder.xml.XMLMapperBuilder;
 import com.springleaf.mybatis.datasource.DataSourceFactory;
 import com.springleaf.mybatis.io.Resources;
 import com.springleaf.mybatis.mapping.Environment;
@@ -25,12 +24,16 @@ import java.util.Properties;
  * XML配置构建器，建造者模式，继承BaseBuilder
  * 负责解析 MyBatis 主配置文件（如 mybatis-config.xml）和其中的 <mappers> 标签。
  * 构建出完整的 Configuration 对象。
- * 如：
- *<configuration>
- *     <mappers>
- *         <mapper resource="mapper/User_Mapper.xml"/>
- *     </mappers>
- * </configuration>
+ * 包括：
+ * <properties>：属性配置
+ * <settings>：MyBatis 行为设置
+ * <typeAliases>：类型别名
+ * <typeHandlers>：类型处理器
+ * <objectFactory>：对象工厂
+ * <plugins>：插件
+ * <environments>：环境配置（数据源、事务管理器等）
+ * <mappers>：映射文件或接口路径
+ * 加载 <mappers> 标签后，会调用 XMLMapperBuilder 去解析具体的映射文件
  */
 public class XMLConfigBuilder extends BaseBuilder {
 
@@ -133,6 +136,7 @@ public class XMLConfigBuilder extends BaseBuilder {
                 for (Element property : propertyList) {
                     props.setProperty(property.attributeValue("name"), property.attributeValue("value"));
                 }
+                // 配置数据源
                 dataSourceFactory.setProperties(props);
                 DataSource dataSource = dataSourceFactory.getDataSource();
 

@@ -1,6 +1,5 @@
 package com.springleaf.mybatis.datasource.pooled;
 
-import com.springleaf.mybatis.datasource.pooled.PooledDataSource;
 import com.springleaf.mybatis.datasource.unpooled.UnpooledDataSourceFactory;
 
 /**

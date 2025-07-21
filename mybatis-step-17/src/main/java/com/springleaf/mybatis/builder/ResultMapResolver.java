@@ -1,6 +1,5 @@
 package com.springleaf.mybatis.builder;
 
-import com.springleaf.mybatis.builder.MapperBuilderAssistant;
 import com.springleaf.mybatis.mapping.ResultMap;
 import com.springleaf.mybatis.mapping.ResultMapping;
 

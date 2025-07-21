@@ -1,7 +1,5 @@
 package com.springleaf.mybatis.binding;
 
-import com.springleaf.mybatis.binding.MapperMethod;
-import com.springleaf.mybatis.binding.MapperProxy;
 import com.springleaf.mybatis.session.SqlSession;
 
 import java.lang.reflect.Method;

@@ -3,8 +3,6 @@ package com.springleaf.mybatis.executor.resultset;
 import com.springleaf.mybatis.executor.Executor;
 import com.springleaf.mybatis.executor.result.DefaultResultContext;
 import com.springleaf.mybatis.executor.result.DefaultResultHandler;
-import com.springleaf.mybatis.executor.resultset.ResultSetHandler;
-import com.springleaf.mybatis.executor.resultset.ResultSetWrapper;
 import com.springleaf.mybatis.mapping.BoundSql;
 import com.springleaf.mybatis.mapping.MappedStatement;
 import com.springleaf.mybatis.mapping.ResultMap;

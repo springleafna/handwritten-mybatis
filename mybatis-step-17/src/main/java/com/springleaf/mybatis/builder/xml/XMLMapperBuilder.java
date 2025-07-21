@@ -3,7 +3,6 @@ package com.springleaf.mybatis.builder.xml;
 import com.springleaf.mybatis.builder.BaseBuilder;
 import com.springleaf.mybatis.builder.MapperBuilderAssistant;
 import com.springleaf.mybatis.builder.ResultMapResolver;
-import com.springleaf.mybatis.builder.xml.XMLStatementBuilder;
 import com.springleaf.mybatis.cache.Cache;
 import com.springleaf.mybatis.io.Resources;
 import com.springleaf.mybatis.mapping.ResultFlag;
@@ -23,6 +22,12 @@ import java.util.Properties;
 
 /**
  * XML映射构建器
+ * 解析映射文件（如xxxMapper.xml）
+ * 包括：
+ * <resultMap>：结果映射
+ * <sql>：SQL 片段
+ * <select>, <insert>, <update>, <delete>：SQL 语句标签（但不负责解析 SQL 语句体）
+ * 实际解析 SQL 语句体（如动态 SQL、参数映射等）是由 XMLStatementBuilder 完成的。
  */
 public class XMLMapperBuilder extends BaseBuilder {
 

@@ -1,8 +1,5 @@
 package com.springleaf.mybatis.type;
 
-import com.springleaf.mybatis.type.BaseTypeHandler;
-import com.springleaf.mybatis.type.JdbcType;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;

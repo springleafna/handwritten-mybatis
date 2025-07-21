@@ -1,6 +1,5 @@
 package com.springleaf.mybatis.executor;
 
-import com.springleaf.mybatis.executor.BaseExecutor;
 import com.springleaf.mybatis.executor.statement.StatementHandler;
 import com.springleaf.mybatis.mapping.BoundSql;
 import com.springleaf.mybatis.mapping.MappedStatement;

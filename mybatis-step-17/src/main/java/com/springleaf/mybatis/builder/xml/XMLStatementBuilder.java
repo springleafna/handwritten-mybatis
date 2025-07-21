@@ -18,6 +18,14 @@ import java.util.Locale;
 
 /**
  * XML语句构建器
+ * 负责解析 <select>, <insert>, <update>, <delete> 等 SQL 标签，
+ * 生成 MappedStatement 并注册到 Configuration 中。
+ * 包括：
+ * SQL 语句的 ID（即 namespace + id）
+ * SQL 语句文本（支持动态 SQL，如 <if>, <foreach> 等）
+ * 参数映射（parameterMap, parameterType）
+ * 结果映射（resultMap, resultType）
+ * 是否使用缓存（useCache）
  */
 public class XMLStatementBuilder extends BaseBuilder {
 

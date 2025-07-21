@@ -3,7 +3,6 @@ package com.springleaf.mybatis.transaction.jdbc;
 import com.springleaf.mybatis.session.TransactionIsolationLevel;
 import com.springleaf.mybatis.transaction.Transaction;
 import com.springleaf.mybatis.transaction.TransactionFactory;
-import com.springleaf.mybatis.transaction.jdbc.JdbcTransaction;
 
 import javax.sql.DataSource;
 import java.sql.Connection;

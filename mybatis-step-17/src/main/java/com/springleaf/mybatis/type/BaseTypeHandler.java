@@ -1,8 +1,6 @@
 package com.springleaf.mybatis.type;
 
 import com.springleaf.mybatis.session.Configuration;
-import com.springleaf.mybatis.type.JdbcType;
-import com.springleaf.mybatis.type.TypeHandler;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

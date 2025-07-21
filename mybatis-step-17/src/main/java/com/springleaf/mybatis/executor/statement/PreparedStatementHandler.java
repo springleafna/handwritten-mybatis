@@ -2,7 +2,6 @@ package com.springleaf.mybatis.executor.statement;
 
 import com.springleaf.mybatis.executor.Executor;
 import com.springleaf.mybatis.executor.keygen.KeyGenerator;
-import com.springleaf.mybatis.executor.statement.BaseStatementHandler;
 import com.springleaf.mybatis.mapping.BoundSql;
 import com.springleaf.mybatis.mapping.MappedStatement;
 import com.springleaf.mybatis.session.ResultHandler;

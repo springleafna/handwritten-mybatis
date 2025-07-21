@@ -1,7 +1,5 @@
 package com.springleaf.mybatis.mapping;
 
-import com.springleaf.mybatis.mapping.BoundSql;
-
 /**
  * SQL源码
  * 代表从XML⽂件或者注解读取的映射语句的内容,它创建的SQL会被传递给数据库。

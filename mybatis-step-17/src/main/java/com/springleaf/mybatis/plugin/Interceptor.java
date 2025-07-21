@@ -1,8 +1,5 @@
 package com.springleaf.mybatis.plugin;
 
-import com.springleaf.mybatis.plugin.Invocation;
-import com.springleaf.mybatis.plugin.Plugin;
-
 import java.util.Properties;
 
 /**

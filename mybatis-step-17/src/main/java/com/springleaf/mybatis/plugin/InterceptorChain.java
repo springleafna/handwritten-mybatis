@@ -1,7 +1,5 @@
 package com.springleaf.mybatis.plugin;
 
-import com.springleaf.mybatis.plugin.Interceptor;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

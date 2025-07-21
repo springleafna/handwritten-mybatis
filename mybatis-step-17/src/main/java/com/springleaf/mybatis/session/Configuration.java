@@ -42,7 +42,7 @@ import java.util.Set;
 
 /**
  * 配置项
- * Configuration 是 Mybatis 初始化过程的核心对象，Mybatis 中几乎全部的配置信都会保存在Configuration对象中。
+ * Configuration 是 Mybatis 初始化过程的核心对象，Mybatis 中几乎全部的配置信息都会保存在Configuration对象中。
  * Configuration 对象是在 Mybatis 初始化过程中创建且全局唯一的，也有人称它是一个 "All-In-One" 配置对象
  */
 public class Configuration {

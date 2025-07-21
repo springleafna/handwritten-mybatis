@@ -1,9 +1,5 @@
 package com.springleaf.mybatis.scripting.xmltags;
 
-import com.springleaf.mybatis.scripting.xmltags.DynamicContext;
-import com.springleaf.mybatis.scripting.xmltags.ExpressionEvaluator;
-import com.springleaf.mybatis.scripting.xmltags.SqlNode;
-
 /**
  * IF SQL 节点
  */

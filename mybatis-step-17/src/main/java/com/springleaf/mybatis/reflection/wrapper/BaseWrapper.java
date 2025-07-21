@@ -2,7 +2,6 @@ package com.springleaf.mybatis.reflection.wrapper;
 
 import com.springleaf.mybatis.reflection.MetaObject;
 import com.springleaf.mybatis.reflection.property.PropertyTokenizer;
-import com.springleaf.mybatis.reflection.wrapper.ObjectWrapper;
 
 import java.util.List;
 import java.util.Map;

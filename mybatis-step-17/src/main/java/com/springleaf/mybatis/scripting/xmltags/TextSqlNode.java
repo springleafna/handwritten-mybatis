@@ -2,9 +2,6 @@ package com.springleaf.mybatis.scripting.xmltags;
 
 import com.springleaf.mybatis.parsing.GenericTokenParser;
 import com.springleaf.mybatis.parsing.TokenHandler;
-import com.springleaf.mybatis.scripting.xmltags.DynamicContext;
-import com.springleaf.mybatis.scripting.xmltags.OgnlCache;
-import com.springleaf.mybatis.scripting.xmltags.SqlNode;
 import com.springleaf.mybatis.type.SimpleTypeRegistry;
 
 import java.util.regex.Pattern;

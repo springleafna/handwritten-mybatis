@@ -1,8 +1,6 @@
 package com.springleaf.mybatis.reflection.wrapper;
 
 import com.springleaf.mybatis.reflection.MetaObject;
-import com.springleaf.mybatis.reflection.wrapper.ObjectWrapper;
-import com.springleaf.mybatis.reflection.wrapper.ObjectWrapperFactory;
 
 /**
  * 默认对象包装工厂

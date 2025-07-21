@@ -1,8 +1,5 @@
 package com.springleaf.mybatis.scripting.xmltags;
 
-import com.springleaf.mybatis.scripting.xmltags.DynamicContext;
-import com.springleaf.mybatis.scripting.xmltags.SqlNode;
-
 import java.util.List;
 
 /**

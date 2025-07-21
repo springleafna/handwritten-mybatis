@@ -7,7 +7,6 @@ import com.springleaf.mybatis.mapping.SqlSource;
 import com.springleaf.mybatis.scripting.LanguageDriver;
 import com.springleaf.mybatis.scripting.defaults.DefaultParameterHandler;
 import com.springleaf.mybatis.scripting.defaults.RawSqlSource;
-import com.springleaf.mybatis.scripting.xmltags.XMLScriptBuilder;
 import com.springleaf.mybatis.session.Configuration;
 import org.dom4j.Element;
 

@@ -6,7 +6,6 @@ import com.springleaf.mybatis.session.Configuration;
 import com.springleaf.mybatis.session.SqlSession;
 import com.springleaf.mybatis.session.SqlSessionFactory;
 import com.springleaf.mybatis.session.TransactionIsolationLevel;
-import com.springleaf.mybatis.session.defaults.DefaultSqlSession;
 import com.springleaf.mybatis.transaction.Transaction;
 import com.springleaf.mybatis.transaction.TransactionFactory;
 

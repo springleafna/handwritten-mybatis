@@ -1,7 +1,5 @@
 package com.springleaf.mybatis.reflection.factory;
 
-import com.springleaf.mybatis.reflection.factory.ObjectFactory;
-
 import java.io.Serializable;
 import java.lang.reflect.Constructor;
 import java.util.*;

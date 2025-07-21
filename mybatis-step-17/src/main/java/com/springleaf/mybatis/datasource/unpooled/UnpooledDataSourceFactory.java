@@ -1,7 +1,6 @@
 package com.springleaf.mybatis.datasource.unpooled;
 
 import com.springleaf.mybatis.datasource.DataSourceFactory;
-import com.springleaf.mybatis.datasource.unpooled.UnpooledDataSource;
 import com.springleaf.mybatis.reflection.MetaObject;
 import com.springleaf.mybatis.reflection.SystemMetaObject;
 

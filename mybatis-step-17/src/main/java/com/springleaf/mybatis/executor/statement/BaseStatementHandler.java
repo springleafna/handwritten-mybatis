@@ -4,7 +4,6 @@ import com.springleaf.mybatis.executor.Executor;
 import com.springleaf.mybatis.executor.keygen.KeyGenerator;
 import com.springleaf.mybatis.executor.parameter.ParameterHandler;
 import com.springleaf.mybatis.executor.resultset.ResultSetHandler;
-import com.springleaf.mybatis.executor.statement.StatementHandler;
 import com.springleaf.mybatis.mapping.BoundSql;
 import com.springleaf.mybatis.mapping.MappedStatement;
 import com.springleaf.mybatis.session.Configuration;

@@ -1,6 +1,5 @@
 package com.springleaf.mybatis.reflection;
 
-import com.springleaf.mybatis.reflection.MetaObject;
 import com.springleaf.mybatis.reflection.factory.DefaultObjectFactory;
 import com.springleaf.mybatis.reflection.factory.ObjectFactory;
 import com.springleaf.mybatis.reflection.wrapper.DefaultObjectWrapperFactory;

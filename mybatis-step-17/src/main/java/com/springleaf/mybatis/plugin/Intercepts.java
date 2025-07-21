@@ -1,7 +1,5 @@
 package com.springleaf.mybatis.plugin;
 
-import com.springleaf.mybatis.plugin.Signature;
-
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

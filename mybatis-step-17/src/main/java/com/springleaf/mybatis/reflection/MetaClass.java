@@ -12,7 +12,6 @@ import java.lang.reflect.Type;
 import java.util.Collection;
 
 /**
- * 元类
  * MetaClass 是 类级别的元信息封装，它基于 Reflector，
  * 主要提供类结构信息的查询（如属性、getter/setter 是否存在），但不直接操作对象实例。
  */
@@ -124,6 +123,9 @@ public class MetaClass {
         return null;
     }
 
+    /**
+     * 判断属性表达式中指定的属性是否有对应的 setter 方法
+     */
     public boolean hasSetter(String name) {
         PropertyTokenizer prop = new PropertyTokenizer(name);
         if (prop.hasNext()) {
@@ -138,6 +140,9 @@ public class MetaClass {
         }
     }
 
+    /**
+     * 判断属性表达式中指定的属性是否有对应的 getter 方法
+     */
     public boolean hasGetter(String name) {
         PropertyTokenizer prop = new PropertyTokenizer(name);
         if (prop.hasNext()) {

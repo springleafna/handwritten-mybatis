@@ -3,7 +3,7 @@ package com.springleaf.mybatis.reflection.invoker;
 import java.lang.reflect.Field;
 
 /**
- * setter 调用者
+ * 在 Reflector 对象的初始化过程中，没有 setter方法的字段都会被封装成 SetFieldInvoker 对象
  * 模拟 字段的 setter 行为
  * 通过 field.set(target, args[0]) 给字段赋值
  * getType() 返回字段类型

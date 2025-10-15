@@ -11,15 +11,14 @@ import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * 核心反射工具类，主要用于对Java类的元信息进行缓存和反射操作
- * 每个Reflector对象都对应一个类，在Reflector中缓存了反射操作需要使用的类的元信息
+ * 核心反射工具类，用于缓存 Java 类的元信息并封装反射操作。
+ *
+ * 使用反射模块操作每个 Class 时，会将其封装为 Reflector 对象，缓存其属性、getter/setter 等元数据，
+ * 避免重复反射查询，提升性能。每个 Reflector 实例对应一个 Class。
+ *
  * 主要功能：
- * 1. 类元信息缓存：
- *  - 缓存类的属性、getter/setter方法等元数据信息
- *  - 避免每次使用时都通过反射获取，提高性能
- * 2. 反射操作封装：
- * - 提供统一的API来访问类的属性和方法
- * - 简化反射操作，隐藏复杂的反射API细节
+ * 1. 元信息缓存：缓存类的属性、getter/setter 方法等，避免重复反射开销；
+ * 2. 反射封装：提供统一、简洁的 API 访问属性和方法，屏蔽底层反射复杂性。
  */
 public class Reflector {
 
@@ -34,9 +33,9 @@ public class Reflector {
     private String[] readablePropertyNames = EMPTY_STRING_ARRAY;
     // 可写属性的名称集合，可写属性就是存在相应setter方法的属性，初始值为空数组
     private String[] writeablePropertyNames = EMPTY_STRING_ARRAY;
-    // 记录了属性相应的setter方法，key是属性名称，value是Invoker对象，它是对setter方法对应Method对象的封装
+    // 记录了属性相应的setter方法，key是属性名称（比如setAge(int age)方法中的key就是Age），value是Invoker对象（Invoker是对setter方法对应Method对象的封装）
     private Map<String, Invoker> setMethods = new HashMap<>();
-    // 属性相应的getter方法集合，key是属性名称，value也是Invoker对象
+    // 属性相应的getter方法集合，key是属性名称（比如getAge()方法中的key就是Age），value也是Invoker对象（Invoker是对setter方法对应Method对象的封装）
     private Map<String, Invoker> getMethods = new HashMap<>();
     // 记录了属性相应的setter方法的参数值类型，key是属性名称，value是setter方法的参数类型
     private Map<String, Class<?>> setTypes = new HashMap<>();
@@ -44,21 +43,24 @@ public class Reflector {
     private Map<String, Class<?>> getTypes = new HashMap<>();
     // 记录了默认构造方法
     private Constructor<?> defaultConstructor;
-    // 记录了所有属性名称的集合
+    // 记录了所有属性名称的集合，记录到这个集合中的属性名称都是大写的
     private Map<String, String> caseInsensitivePropertyMap = new HashMap<>();
 
     public Reflector(Class<?> clazz) {
+        // 用 type 字段记录传入的 Class 对象
         this.type = clazz;
-        // 加入构造函数
+        // 通过反射拿到 Class 类的全部构造方法，并进行遍历，过滤得到唯一的无参构造方法来初始化 defaultConstructor 字段
         addDefaultConstructor(clazz);
-        // 加入 getter
+        // 读取 Class 类中的 getter方法，填充 getMethods 集合和 getTypes 集合
         addGetMethods(clazz);
-        // 加入 setter
+        // 读取 Class 类中的 setter 方法，填充 setMethods 集合和 setTypes 集合
         addSetMethods(clazz);
-        // 加入字段
+        // 读取 Class 中没有 getter/setter 方法的字段，生成对应的 Invoker 对象，填充 getMethods 集合、getTypes 集合以及 setMethods 集合、setTypes 集合
         addFields(clazz);
+        // 根据前面三步构造的 getMethods/setMethods 集合的 keySet，初始化 readablePropertyNames、writablePropertyNames 集合
         readablePropertyNames = getMethods.keySet().toArray(new String[getMethods.keySet().size()]);
         writeablePropertyNames = setMethods.keySet().toArray(new String[setMethods.keySet().size()]);
+        // 遍历构造的 readablePropertyNames、writablePropertyNames 集合，将其中的属性名称全部转化成大写并记录到 caseInsensitivePropertyMap 集合中
         for (String propName : readablePropertyNames) {
             caseInsensitivePropertyMap.put(propName.toUpperCase(Locale.ENGLISH), propName);
         }
@@ -68,8 +70,8 @@ public class Reflector {
     }
 
     private void addDefaultConstructor(Class<?> clazz) {
-        Constructor<?>[] consts = clazz.getDeclaredConstructors();
-        for (Constructor<?> constructor : consts) {
+        Constructor<?>[] constructors = clazz.getDeclaredConstructors();
+        for (Constructor<?> constructor : constructors) {
             if (constructor.getParameterTypes().length == 0) {
                 if (canAccessPrivateMethods()) {
                     try {
@@ -86,7 +88,9 @@ public class Reflector {
     }
 
     private void addGetMethods(Class<?> clazz) {
+        // Key 为属性名称，Value 是该属性对应的 getter 方法集合
         Map<String, List<Method>> conflictingGetters = new HashMap<>();
+        // 调用 getClassMethods() 方法获取当前 Class 类的所有方法对应的 Method 对象。
         Method[] methods = getClassMethods(clazz);
         for (Method method : methods) {
             String name = method.getName();
@@ -102,6 +106,10 @@ public class Reflector {
                 }
             }
         }
+        // 一个类获取到的get方法可能有多个
+        // 因为子类重写了父类的 getter 并使用了协变返回类型，JVM 为兼容性生成了一个桥接方法，
+        // 导致在子类的反射信息中出现了两个签名不同（返回类型不同）的 getAge() 方法，虽然它们逻辑上对应同一个属性。
+        // 所以接下来对这种 getter 方法的冲突进行处理，核心逻辑是比较 getter 方法的返回值，优先选择返回值为子类的 getter 方法
         resolveGetterConflicts(conflictingGetters);
     }
 
@@ -161,6 +169,11 @@ public class Reflector {
         }
     }
 
+    /**
+     * 对于没有 getter 方法的字段，addFields() 方法会为这些字段生成对应的 GetFieldInvoker 对象并记录到 getMethods 集合中，
+     * 同时也会将属性名称和属性类型记录到 getTypes 集合中。
+     * 处理没有 setter 方法的字段也是相同的逻辑。
+     */
     private void addFields(Class<?> clazz) {
         Field[] fields = clazz.getDeclaredFields();
         for (Field field : fields) {
@@ -176,7 +189,9 @@ public class Reflector {
                     // issue #379 - removed the check for final because JDK 1.5 allows
                     // modification of final fields through reflection (JSR-133). (JGB)
                     // pr #16 - final static can only be set by the classloader
+                    // 返回一个 int 类型的位掩码（bitmask），表示该字段上所有的 Java 修饰符（如 public、private、static、final 等）
                     int modifiers = field.getModifiers();
+                    // 如果这个字段不是“静态常量”（即不是 static final，因为它们是静态常量不可修改或不应被框架操作），则执行 addSetField(field)）
                     if (!(Modifier.isFinal(modifiers) && Modifier.isStatic(modifiers))) {
                         addSetField(field);
                     }
@@ -255,7 +270,9 @@ public class Reflector {
     }
 
     private Method[] getClassMethods(Class<?> cls) {
-        Map<String, Method> uniqueMethods = new HashMap<String, Method>();
+        // 使用 Map 集合记录遍历到的方法，实现去重的效果，其中 Key 是对应的方法签名，Value 为方法对应的 Method 对象
+        // 方法签名格式：（返回值类型#方法名称:参数类型列表，比如：java.lang.String#addGetMethods:java.lang.Class）
+        Map<String, Method> uniqueMethods = new HashMap<>();
         Class<?> currentClass = cls;
         while (currentClass != null) {
             addUniqueMethods(uniqueMethods, currentClass.getDeclaredMethods());
@@ -317,6 +334,9 @@ public class Reflector {
         return sb.toString();
     }
 
+    /**
+     * 提前探测当前环境是否允许“绕过 Java 访问控制”，避免后续 setAccessible(true) 失败
+     */
     private static boolean canAccessPrivateMethods() {
         try {
             SecurityManager securityManager = System.getSecurityManager();

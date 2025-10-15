@@ -3,7 +3,7 @@ package com.springleaf.mybatis.reflection.property;
 import java.util.Locale;
 
 /**
- * 属性命名器
+ * 转换方法名到属性名，以及检测一个方法名是否为 getter 或 setter 方法
  */
 public class PropertyNamer {
 

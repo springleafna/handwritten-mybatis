@@ -3,7 +3,7 @@ package com.springleaf.mybatis.reflection.invoker;
 import java.lang.reflect.Method;
 
 /**
- * 方法调用者
+ * 在 Reflector 对象的初始化过程中，所有属性的 getter/setter 方法都会被封装成 MethodInvoker 对象
  */
 public class MethodInvoker implements Invoker {
 

@@ -3,7 +3,7 @@ package com.springleaf.mybatis.reflection.invoker;
 import java.lang.reflect.Field;
 
 /**
- * getter 调用者
+ * 在 Reflector 对象的初始化过程中，没有 getter方法的字段都会被封装成 GetFieldInvoker 对象
  * 模拟 字段的 getter 行为
  * 通过 field.get(target) 获取字段值
  * getType() 返回字段的类型

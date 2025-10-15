@@ -16,6 +16,10 @@ public class DefaultObjectFactory implements ObjectFactory, Serializable {
         // no props for default 默认无属性可设置
     }
 
+    /**
+     * 底层是通过调用 instantiateClass() 方法创建对象的。
+     * instantiateClass() 方法会通过反射的方式根据传入的参数列表，选择合适的构造函数实例化对象。
+     */
     @Override
     public <T> T create(Class<T> type) {
         return create(type, null, null);

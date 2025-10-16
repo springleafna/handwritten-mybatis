@@ -16,8 +16,12 @@ import java.util.Map;
  */
 public final class TypeHandlerRegistry {
 
+    // 记录 JdbcType 与 TypeHandler 之间的关联关系
     private final Map<JdbcType, TypeHandler<?>> JDBC_TYPE_HANDLER_MAP = new EnumMap<>(JdbcType.class);
+    // 第一层 Key 是需要转换的 Java 类型，第二层 Key 是转换的目标 JdbcType，最终的 Value 是完成此次转换时所需要使用的 TypeHandler 对象
+    // 有两层 Map 的设计是因为：比如Java 类型中的 String 可能转换成数据库中的 varchar、char、text 等多种类型，存在一对多关系，所以就可能有不同的 TypeHandler 实现
     private final Map<Type, Map<JdbcType, TypeHandler<?>>> TYPE_HANDLER_MAP = new HashMap<>();
+    // 记录了全部 TypeHandler 的类型以及对应的 TypeHandler 实例对象
     private final Map<Class<?>, TypeHandler<?>> ALL_TYPE_HANDLERS_MAP = new HashMap<>();
 
     public TypeHandlerRegistry() {

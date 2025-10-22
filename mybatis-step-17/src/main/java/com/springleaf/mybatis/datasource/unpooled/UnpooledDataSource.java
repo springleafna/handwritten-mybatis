@@ -25,7 +25,7 @@ public class UnpooledDataSource implements DataSource {
     private String driver;
     // JDBC 连接 URL（如：jdbc:mysql://...）
     private String url;
-    // 账号
+    // 用户名
     private String username;
     // 密码
     private String password;
@@ -144,15 +144,22 @@ public class UnpooledDataSource implements DataSource {
     }
 
     private Connection doGetConnection(Properties properties) throws SQLException {
+        // 初始化数据库驱动
         initializerDriver();
+        // 创建数据库连接
         Connection connection = DriverManager.getConnection(url, properties);
-        if (autoCommit != null && autoCommit != connection.getAutoCommit()) {
-            connection.setAutoCommit(autoCommit);
+        // 配置数据库连接
+        configureConnection(connection);
+        return connection;
+    }
+
+    private void configureConnection(Connection conn) throws SQLException {
+        if (autoCommit != null && autoCommit != conn.getAutoCommit()) {
+            conn.setAutoCommit(autoCommit);
         }
         if (defaultTransactionIsolationLevel != null) {
-            connection.setTransactionIsolation(defaultTransactionIsolationLevel);
+            conn.setTransactionIsolation(defaultTransactionIsolationLevel);
         }
-        return connection;
     }
 
     @Override
